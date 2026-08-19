@@ -11,10 +11,12 @@
 
 ## 📥 Direct Downloads (`.exe`)
 
-You can run Jents VPN directly without installing Python:
+You can download and run the standalone applications with one click (no Python needed):
 
-* 🚀 **[Download Jents_VPN.exe (Standalone Application)](Jents_VPN.exe)**
-* 🔍 **[Download IP_Detector.exe (Live IP & Geolocation Scanner)](IP_Detector.exe)**
+* 🚀 **[Download Jents_VPN.exe (Direct Download)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Jents_VPN.exe)**
+* 🔍 **[Download IP_Detector.exe (Direct Download)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/IP_Detector.exe)**
+
+*(Alternative Mirrors: [Jents_VPN.exe Raw Mirror](https://github.com/sumitajsr79-eng/jents-vpn/raw/main/Jents_VPN.exe) | [IP_Detector.exe Raw Mirror](https://github.com/sumitajsr79-eng/jents-vpn/raw/main/IP_Detector.exe))*
 
 ---
 
