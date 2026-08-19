@@ -22,6 +22,9 @@ def build():
         "--windowed",
         "--uac-admin",  # Request admin privileges automatically on launch
         f"--icon={icon_path}",
+        "--hidden-import=webview",
+        "--hidden-import=clr",
+        "--collect-all=webview",
         f"--add-data={config_path};config",
         f"--add-data={icon_path};icons",
         f"--add-data={os.path.join(base_dir, 'ui_web')};ui_web",
