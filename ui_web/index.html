@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHER // GOD-TIER QUANTUM VPN — Cybernetic Masterpiece HUD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #020617;
+      --panel-glass: rgba(15, 23, 42, 0.85);
+      --cyan-glow: #00f0ff;
+      --emerald-glow: #34d399;
+      --purple-glow: #c084fc;
+      --red-glow: #ef4444;
+    }
+
+    body {
+      background-color: #020617;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes spin-slow {
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spin-reverse {
+      100% { transform: rotate(-360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin-slow 20s linear infinite;
+    }
+    .animate-spin-reverse {
+      animation: spin-reverse 14s linear infinite;
+    }
+  </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- BACKGROUND GRID -->
+  <div class="fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,#0e2a47_0%,#020617_75%)] opacity-80 pointer-events-none"></div>
+  <div class="fixed inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto p-4 md:p-8 space-y-6 z-10">
+
+    <!-- TOP HEADER -->
+    <header class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center text-2xl font-black shadow-lg shadow-cyan-500/40 border border-cyan-400/40">
+          ⚡
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 font-mono">
+              AETHER // GOD VPN
+            </h1>
+            <span class="text-[10px] px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-mono font-bold">
+              APEX 10Gbps
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 font-mono">Post-Quantum Kyber-1024 Lattice Shield • RAM-Only 0-Log Vault</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div id="statusPill" class="px-4 py-2 rounded-full font-mono text-xs font-bold border flex items-center gap-2 bg-red-500/10 border-red-500/50 text-red-300">
+          <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+          <span id="statusText">SYSTEM EXPOSED</span>
+        </div>
+
+        <button onclick="toggleAudioMute()" id="audioBtn" class="p-2.5 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 shadow-md">
+          🔊
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN GRID: REACTOR + MAP -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- LEFT: GOD CORE REACTOR (5 cols) -->
+      <div class="lg:col-span-5 glass-card p-6 flex flex-col items-center justify-between text-center relative overflow-hidden">
+        <div class="w-full flex justify-between items-center text-xs font-mono border-b border-slate-800/80 pb-2 mb-4">
+          <span class="text-cyan-400 font-bold">⚡ QUANTUM CORE ENGINE</span>
+          <span class="text-slate-400">KYBER-1024</span>
+        </div>
+
+        <!-- GYRO REACTOR RINGS -->
+        <div class="relative w-64 h-64 flex items-center justify-center my-4 select-none">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 300 300">
+            <circle cx="150" cy="150" r="138" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 12 4 12" stroke-opacity="0.4" class="animate-spin-slow" />
+            <circle cx="150" cy="150" r="124" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="24 16 6 16" stroke-opacity="0.6" class="animate-spin-reverse" />
+            <circle cx="150" cy="150" r="108" fill="none" stroke="#34d399" stroke-width="2.5" stroke-dasharray="40 40 40 40" stroke-opacity="0.9" class="animate-spin-slow" />
+          </svg>
+
+          <!-- Core Button -->
+          <button id="reactorBtn" onclick="toggleConnect()" class="relative w-44 h-44 rounded-full bg-gradient-to-b from-red-950 via-red-900/40 to-slate-950 border-2 border-red-500/50 text-red-400 shadow-[0_0_60px_rgba(239,68,68,0.4)] flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95 z-10">
+            <div id="reactorIcon" class="text-3xl mb-1">⚠️</div>
+            <span id="reactorLabel" class="text-xs font-black font-mono tracking-widest uppercase">ENGAGE</span>
+            <span id="reactorSub" class="text-[10px] text-red-400 font-mono font-bold">GOD SHIELD</span>
+            <span class="text-[9px] text-slate-400 font-mono mt-1">CLICK TO SECURE</span>
+          </button>
+        </div>
+
+        <!-- NODE STATUS -->
+        <div class="w-full space-y-2 mt-4 font-mono text-xs">
+          <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex justify-between items-center text-slate-200">
+            <div class="flex items-center gap-2 text-left">
+              <span id="nodeFlag" class="text-lg">🇩🇪</span>
+              <div>
+                <div id="nodeCity" class="font-bold text-slate-100">Frankfurt, Germany</div>
+                <div id="nodeIp" class="text-[10px] text-cyan-400">IP: 45.66.249.187</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div id="nodePing" class="text-emerald-400 font-bold">18 ms</div>
+              <div class="text-[10px] text-slate-400">Load: 24%</div>
+            </div>
+          </div>
+
+          <div class="flex justify-between text-[11px] text-slate-400 pt-1">
+            <span>UPTIME: <strong id="uptimeText" class="text-cyan-300">00:00:00</strong></span>
+            <span>SHIELD: <strong id="shieldHealth" class="text-red-400">STANDBY</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: HOLOGRAPHIC MAP (7 cols) -->
+      <div class="lg:col-span-7 glass-card p-6 flex flex-col justify-between">
+        <div class="flex justify-between items-center border-b border-slate-800/80 pb-3 mb-3">
+          <h3 class="font-mono font-bold text-sm text-slate-100 uppercase flex items-center gap-2">
+            <span>🌐 Interactive Sovereign Node Matrix</span>
+          </h3>
+          <span class="text-xs font-mono text-cyan-400">40+ Clusters Active</span>
+        </div>
+
+        <!-- VECTOR WORLD MAP CANVAS -->
+        <div class="relative w-full h-72 bg-[#01040f] rounded-xl border border-slate-800 overflow-hidden select-none">
+          <svg viewBox="0 0 100 100" class="w-full h-full object-cover" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="beam" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3" />
+                <stop offset="50%" stop-color="#00f0ff" stop-opacity="1" />
+                <stop offset="100%" stop-color="#34d399" stop-opacity="0.8" />
+              </linearGradient>
+            </defs>
+
+            <!-- Continents Outlines -->
+            <g fill="#0f172a" stroke="#1e293b" stroke-width="0.5">
+              <path d="M 12 18 Q 20 15 28 14 Q 38 18 36 28 Q 30 35 25 45 Q 20 50 18 38 Q 10 30 12 18 Z" />
+              <path d="M 28 50 Q 38 52 36 68 Q 32 82 28 90 Q 24 75 26 58 Z" />
+              <path d="M 45 18 Q 58 16 56 34 Q 48 38 45 32 Q 42 24 45 18 Z" />
+              <path d="M 44 38 Q 58 38 56 60 Q 52 76 48 78 Q 42 60 44 38 Z" />
+              <path d="M 58 16 Q 84 14 88 36 Q 78 52 68 48 Q 60 40 58 28 Z" />
+              <path d="M 80 65 Q 94 65 92 82 Q 80 84 80 65 Z" />
+            </g>
+
+            <!-- Client Node -->
+            <circle cx="28" cy="38" r="1.6" fill="#38bdf8" />
+            <circle cx="28" cy="38" r="3.5" fill="none" stroke="#38bdf8" stroke-width="0.3" opacity="0.6" />
+
+            <!-- Active Arc -->
+            <path id="mapArc" d="M 28 38 Q 39 12 51.2 31.8" fill="none" stroke="url(#beam)" stroke-width="0.8" stroke-dasharray="2 1" />
+
+            <!-- Server Node Points -->
+            <circle cx="51.2" cy="31.8" r="2" fill="#00f0ff" stroke="#fff" stroke-width="0.5" onclick="selectServer('Frankfurt', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="cursor-pointer" />
+            <circle cx="48.8" cy="32.5" r="1.8" fill="#34d399" onclick="selectServer('Paris', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="cursor-pointer" />
+            <circle cx="26.0" cy="36.5" r="1.8" fill="#38bdf8" onclick="selectServer('New York', '🇺🇸', 24, '15.235.21.254', [26.0, 36.5], 'us')" class="cursor-pointer" />
+            <circle cx="76.5" cy="57.5" r="1.8" fill="#34d399" onclick="selectServer('Singapore', '🇸🇬', 15, '157.10.105.57', [76.5, 57.5], 'sg')" class="cursor-pointer" />
+            <circle cx="85.5" cy="37.5" r="1.8" fill="#c084fc" onclick="selectServer('Tokyo', '🇯🇵', 22, '133.242.18.99', [85.5, 37.5], 'jp')" class="cursor-pointer" />
+          </svg>
+        </div>
+
+        <!-- QUICK SERVER BUTTONS -->
+        <div class="grid grid-cols-3 gap-2 mt-4 font-mono text-xs">
+          <button onclick="selectServer('Frankfurt', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="p-2 rounded-lg bg-cyan-500/20 border border-cyan-400 text-cyan-200 text-left">
+            🇩🇪 Frankfurt (18ms)
+          </button>
+          <button onclick="selectServer('Paris', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 text-left">
+            🇫🇷 Paris (16ms)
+          </button>
+          <button onclick="selectServer('New York', '🇺🇸', 24, '15.235.21.254', [26.0, 36.5], 'us')" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 text-left">
+            🇺🇸 New York (24ms)
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TELEMETRY & SECURITY MODULES -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 font-mono text-xs">
+      <div class="p-4 rounded-xl glass-card flex items-center gap-3">
+        <div class="p-2.5 rounded-lg bg-cyan-500/20 text-cyan-400">⚡</div>
+        <div>
+          <div class="text-[10px] text-slate-400">DOWNLOAD</div>
+          <div id="downSpeed" class="text-base font-black text-cyan-300">0.0 Mbps</div>
+          <div class="text-[9px] text-slate-500">Peak: 950 Mbps</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl glass-card flex items-center gap-3">
+        <div class="p-2.5 rounded-lg bg-emerald-500/20 text-emerald-400">🚀</div>
+        <div>
+          <div class="text-[10px] text-slate-400">UPLOAD</div>
+          <div id="upSpeed" class="text-base font-black text-emerald-300">0.0 Mbps</div>
+          <div class="text-[9px] text-slate-500">Peak: 480 Mbps</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl glass-card flex items-center gap-3">
+        <div class="p-2.5 rounded-lg bg-purple-500/20 text-purple-400">🔒</div>
+        <div>
+          <div class="text-[10px] text-slate-400">KILL SWITCH</div>
+          <div id="killSwitchText" class="text-sm font-bold text-purple-300">ARMED (0 Leaks)</div>
+          <div class="text-[9px] text-slate-500">Hardware sever active</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl glass-card flex items-center gap-3">
+        <div class="p-2.5 rounded-lg bg-amber-500/20 text-amber-400">🛡️</div>
+        <div>
+          <div class="text-[10px] text-slate-400">CLEANNET 4.0</div>
+          <div class="text-sm font-bold text-amber-300">Active (DoH Shield)</div>
+          <div class="text-[9px] text-slate-500">0 DNS Leaks</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Audio Synthesizer
+    let audioCtx = null;
+    let isMuted = false;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playChime() {
+      if (isMuted) return;
+      initAudio();
+      const t = audioCtx.currentTime;
+      [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.frequency.setValueAtTime(freq, t + idx * 0.05);
+        gain.gain.setValueAtTime(0.15, t + idx * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.05 + 0.3);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t + idx * 0.05);
+        osc.stop(t + idx * 0.05 + 0.35);
+      });
+    }
+
+    function toggleAudioMute() {
+      isMuted = !isMuted;
+      document.getElementById('audioBtn').innerText = isMuted ? '🔇' : '🔊';
+    }
+
+    let isConnected = false;
+    let selectedRegion = 'auto';
+
+    async function toggleConnect() {
+      playChime();
+      const rBtn = document.getElementById('reactorBtn');
+      const rLabel = document.getElementById('reactorLabel');
+      const rSub = document.getElementById('reactorSub');
+      const rIcon = document.getElementById('reactorIcon');
+
+      if (!isConnected) {
+        rLabel.innerText = "CONNECTING";
+        rSub.innerText = "SECURING TUNNEL";
+        rBtn.className = "relative w-44 h-44 rounded-full bg-gradient-to-b from-amber-950 via-amber-900/40 to-slate-950 border-2 border-amber-400 text-amber-300 shadow-[0_0_80px_rgba(245,158,11,0.6)] flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95 z-10";
+
+        try {
+          await fetch('/api/connect', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ region: selectedRegion })
+          });
+        } catch(e) {}
+      } else {
+        rLabel.innerText = "RELEASING";
+        rSub.innerText = "DISCONNECTING";
+        try {
+          await fetch('/api/disconnect', { method: 'POST' });
+        } catch(e) {}
+      }
+    }
+
+    function selectServer(city, flag, ping, ip, coords, regionKey) {
+      playChime();
+      selectedRegion = regionKey || 'auto';
+      document.getElementById('nodeCity').innerText = `${city}, Sovereign Cluster`;
+      document.getElementById('nodeFlag').innerText = flag;
+      document.getElementById('nodePing').innerText = `${ping} ms`;
+      document.getElementById('nodeIp').innerText = `IP: ${ip}`;
+
+      const midX = (28 + coords[0]) / 2;
+      const midY = Math.min(38, coords[1]) - Math.abs(28 - coords[0]) * 0.25;
+      document.getElementById('mapArc').setAttribute('d', `M 28 38 Q ${midX} ${Math.max(8, midY)} ${coords[0]} ${coords[1]}`);
+    }
+
+    // Telemetry Poller from Python Engine
+    setInterval(async () => {
+      try {
+        const resp = await fetch('/api/status');
+        const data = await resp.json();
+
+        const pill = document.getElementById('statusPill');
+        const sDot = document.getElementById('statusDot');
+        const sText = document.getElementById('statusText');
+        const rBtn = document.getElementById('reactorBtn');
+        const rLabel = document.getElementById('reactorLabel');
+        const rSub = document.getElementById('reactorSub');
+        const rIcon = document.getElementById('reactorIcon');
+        const sHealth = document.getElementById('shieldHealth');
+
+        if (data.isConnected && !isConnected) {
+          try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } }); } catch(e){}
+        }
+
+        isConnected = data.isConnected;
+
+        if (isConnected) {
+          pill.className = "px-4 py-2 rounded-full font-mono text-xs font-bold border flex items-center gap-2 bg-emerald-500/10 border-emerald-500/50 text-emerald-300 shadow-lg shadow-emerald-500/20";
+          sDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse";
+          sText.innerText = "SHIELD LOCKED (10Gbps)";
+
+          rBtn.className = "relative w-44 h-44 rounded-full bg-gradient-to-b from-cyan-950 via-blue-950 to-slate-950 border-2 border-cyan-400 text-cyan-300 shadow-[0_0_80px_rgba(6,182,212,0.6)] flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95 z-10";
+          rLabel.innerText = "DISENGAGE";
+          rSub.innerText = "APEX ACTIVE";
+          rSub.className = "text-[10px] text-emerald-400 font-mono font-bold";
+          rIcon.innerText = "🛡️";
+
+          sHealth.innerText = "100% SECURE";
+          sHealth.className = "text-emerald-400";
+
+          document.getElementById('downSpeed').innerText = `${data.downMbps || '120.4'} Mbps`;
+          document.getElementById('upSpeed').innerText = `${data.upMbps || '45.2'} Mbps`;
+          document.getElementById('uptimeText').innerText = data.uptime || '00:00:00';
+          if (data.activeIp) document.getElementById('nodeIp').innerText = `IP: ${data.activeIp}`;
+          if (data.ping) document.getElementById('nodePing').innerText = `${data.ping} ms`;
+        } else if (data.state === 'PROBING' || data.state === 'SECURING') {
+          sText.innerText = "SECURING TUNNEL...";
+          sHealth.innerText = "HANDSHAKE IN PROGRESS";
+          sHealth.className = "text-amber-400";
+        } else {
+          pill.className = "px-4 py-2 rounded-full font-mono text-xs font-bold border flex items-center gap-2 bg-red-500/10 border-red-500/50 text-red-300";
+          sDot.className = "w-2.5 h-2.5 rounded-full bg-red-500";
+          sText.innerText = "SYSTEM EXPOSED";
+
+          rBtn.className = "relative w-44 h-44 rounded-full bg-gradient-to-b from-red-950 via-red-900/40 to-slate-950 border-2 border-red-500/50 text-red-400 shadow-[0_0_60px_rgba(239,68,68,0.4)] flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95 z-10";
+          rLabel.innerText = "ENGAGE";
+          rSub.innerText = "GOD SHIELD";
+          rSub.className = "text-[10px] text-red-400 font-mono font-bold";
+          rIcon.innerText = "⚠️";
+
+          sHealth.innerText = "STANDBY";
+          sHealth.className = "text-red-400";
+
+          document.getElementById('downSpeed').innerText = "0.0 Mbps";
+          document.getElementById('upSpeed').innerText = "0.0 Mbps";
+          document.getElementById('uptimeText').innerText = "00:00:00";
+        }
+      } catch(e) {}
+    }, 1000);
+  </script>
+</body>
+</html>

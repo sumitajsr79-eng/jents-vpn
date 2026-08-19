@@ -24,6 +24,7 @@ def build():
         f"--icon={icon_path}",
         f"--add-data={config_path};config",
         f"--add-data={icon_path};icons",
+        f"--add-data={os.path.join(base_dir, 'ui_web')};ui_web",
         entry_point
     ]
 

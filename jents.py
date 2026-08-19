@@ -1,16 +1,24 @@
 """
-Jents VPN — Entry Point
+Jents VPN — Aether God Quantum Suite
+====================================
+Launches the full Aether God-Tier Cybernetic Masterpiece UI
+connected to the underlying high-speed autonomous Python VPN engine.
 """
+
 import sys
 import os
 import io
 import ctypes
 import logging
-import traceback
+import webbrowser
+import time
+import threading
 
-# ── Route stdout/stderr to a log file in the exe directory ──────────────────
-# This is CRITICAL — PyInstaller windowed apps have no console, so all errors
-# would be silently swallowed. Instead we write to a file we can read later.
+from config.config_manager import ConfigManager
+from core.auto_engine import JentsEngine
+from core.api_bridge import ApiBridgeServer
+
+# Logging
 LOG_FILE = os.path.join(
     os.path.dirname(sys.executable) if getattr(sys, "frozen", False)
     else os.path.dirname(os.path.abspath(__file__)),
@@ -18,7 +26,7 @@ LOG_FILE = os.path.join(
 )
 
 try:
-    _log_fh = open(LOG_FILE, "w", encoding="utf-8", buffering=1)
+    _log_fh = open(LOG_FILE, "a", encoding="utf-8", buffering=1)
     sys.stdout = _log_fh
     sys.stderr = _log_fh
 except Exception:
@@ -29,7 +37,7 @@ except Exception:
 
 logging.basicConfig(
     stream=sys.stdout,
-    level=logging.DEBUG,
+    level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
 
@@ -49,46 +57,42 @@ def request_admin():
             )
             sys.exit(0)
         except Exception:
-            pass  # User declined — runs with user-level capabilities
+            pass
 
 def main():
+    print("=== JENTS // AETHER GOD-TIER VPN STARTING ===")
+    request_admin()
+
+    if getattr(sys, "frozen", False):
+        base_dir = os.path.dirname(sys.executable)
+    else:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if base_dir not in sys.path:
+        sys.path.insert(0, base_dir)
+
+    cfg = ConfigManager()
+    engine = JentsEngine(config_manager=cfg)
+
+    # Start API Bridge Server on localhost:4099
+    ui_path = os.path.join(base_dir, "ui_web")
+    bridge = ApiBridgeServer(engine=engine, port=4099, ui_dir=ui_path)
+    bridge.start()
+    print("Aether God API Bridge active on http://127.0.0.1:4099/")
+
+    # Launch HUD in default browser / webview
+    time.sleep(0.3)
+    webbrowser.open("http://127.0.0.1:4099/")
+
+    print("Interface launched! Press Ctrl+C or close terminal to stop.")
     try:
-        print("=== Jents VPN Starting ===")
-        print(f"Frozen: {getattr(sys, 'frozen', False)}")
-        print(f"Executable: {sys.executable}")
-
-        request_admin()
-        print("Admin check passed")
-
-        # Add project root to sys.path
-        if getattr(sys, "frozen", False):
-            base_dir = os.path.dirname(sys.executable)
-        else:
-            base_dir = os.path.dirname(os.path.abspath(__file__))
-
-        if base_dir not in sys.path:
-            sys.path.insert(0, base_dir)
-
-        print(f"Base dir: {base_dir}")
-        print(f"sys.path: {sys.path[:3]}")
-
-        from ui.jents_window import JentsWindow
-        print("JentsWindow imported OK")
-        app = JentsWindow()
-        print("JentsWindow created OK — starting mainloop")
-        app.run()
-
-    except Exception as e:
-        print(f"FATAL ERROR: {e}")
-        print(traceback.format_exc())
-        sys.stdout.flush()
-        # Show error in a messagebox so user knows something went wrong
-        try:
-            import tkinter.messagebox as mb
-            mb.showerror("Jents VPN — Startup Error",
-                         f"Fatal error starting Jents VPN:\n\n{e}\n\nCheck jents_debug.log for details.")
-        except Exception:
-            pass
+        while True:
+            time.sleep(1.0)
+    except KeyboardInterrupt:
+        print("Shutting down...")
+    finally:
+        bridge.stop()
+        engine._cleanup()
 
 if __name__ == "__main__":
     main()
