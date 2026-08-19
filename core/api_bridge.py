@@ -5,6 +5,7 @@ Embedded lightweight server that connects the Aether God Cyber HUD
 to the underlying Python VPN Tunnel Engine in real-time.
 """
 
+import sys
 import http.server
 import json
 import threading
