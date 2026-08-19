@@ -54,6 +54,24 @@
     .animate-spin-reverse {
       animation: spin-reverse 14s linear infinite;
     }
+
+    .server-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .server-btn:hover {
+      transform: translateY(-2px);
+    }
+    .server-active {
+      background: rgba(6, 182, 212, 0.22) !important;
+      border-color: #22d3ee !important;
+      color: #a5f3fc !important;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.45) !important;
+    }
+    .server-inactive {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: #1e293b;
+      color: #94a3b8;
+    }
   </style>
 </head>
 <body class="selection:bg-cyan-500 selection:text-slate-950">
@@ -128,7 +146,7 @@
             <div class="flex items-center gap-2 text-left">
               <span id="nodeFlag" class="text-lg">🇩🇪</span>
               <div>
-                <div id="nodeCity" class="font-bold text-slate-100">Frankfurt, Germany</div>
+                <div id="nodeCity" class="font-bold text-slate-100">Frankfurt Citadel</div>
                 <div id="nodeIp" class="text-[10px] text-cyan-400">IP: 45.66.249.187</div>
               </div>
             </div>
@@ -151,7 +169,7 @@
           <h3 class="font-mono font-bold text-sm text-slate-100 uppercase flex items-center gap-2">
             <span>🌐 Interactive Sovereign Node Matrix</span>
           </h3>
-          <span class="text-xs font-mono text-cyan-400">40+ Clusters Active</span>
+          <span class="text-xs font-mono text-cyan-400">5 High-Speed Clusters</span>
         </div>
 
         <!-- VECTOR WORLD MAP CANVAS -->
@@ -183,24 +201,33 @@
             <path id="mapArc" d="M 28 38 Q 39 12 51.2 31.8" fill="none" stroke="url(#beam)" stroke-width="0.8" stroke-dasharray="2 1" />
 
             <!-- Server Node Points -->
-            <circle cx="51.2" cy="31.8" r="2" fill="#00f0ff" stroke="#fff" stroke-width="0.5" onclick="selectServer('Frankfurt', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="cursor-pointer" />
-            <circle cx="48.8" cy="32.5" r="1.8" fill="#34d399" onclick="selectServer('Paris', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="cursor-pointer" />
-            <circle cx="26.0" cy="36.5" r="1.8" fill="#38bdf8" onclick="selectServer('New York', '🇺🇸', 24, '15.235.21.254', [26.0, 36.5], 'us')" class="cursor-pointer" />
-            <circle cx="76.5" cy="57.5" r="1.8" fill="#34d399" onclick="selectServer('Singapore', '🇸🇬', 15, '157.10.105.57', [76.5, 57.5], 'sg')" class="cursor-pointer" />
-            <circle cx="85.5" cy="37.5" r="1.8" fill="#c084fc" onclick="selectServer('Tokyo', '🇯🇵', 22, '133.242.18.99', [85.5, 37.5], 'jp')" class="cursor-pointer" />
+            <circle id="dot-de" cx="51.2" cy="31.8" r="2.2" fill="#00f0ff" stroke="#fff" stroke-width="0.7" onclick="selectServer('Frankfurt Citadel', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="cursor-pointer" />
+            <circle id="dot-fr" cx="48.8" cy="32.5" r="1.8" fill="#34d399" onclick="selectServer('Paris Fortress', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="cursor-pointer" />
+            <circle id="dot-us" cx="26.0" cy="36.5" r="1.8" fill="#38bdf8" onclick="selectServer('New York Apex', '🇺🇸', 24, '198.199.86.11', [26.0, 36.5], 'us')" class="cursor-pointer" />
+            <circle id="dot-sg" cx="76.5" cy="57.5" r="1.8" fill="#34d399" onclick="selectServer('Singapore Turbo', '🇸🇬', 12, '128.199.202.122', [76.5, 57.5], 'sg')" class="cursor-pointer" />
+            <circle id="dot-jp" cx="85.5" cy="37.5" r="1.8" fill="#c084fc" onclick="selectServer('Tokyo Apex', '🇯🇵', 20, '114.94.148.37', [85.5, 37.5], 'jp')" class="cursor-pointer" />
           </svg>
         </div>
 
-        <!-- QUICK SERVER BUTTONS -->
+        <!-- QUICK SERVER BUTTONS WITH DYNAMIC HIGHLIGHTERS -->
         <div class="grid grid-cols-3 gap-2 mt-3 font-mono text-xs">
-          <button onclick="selectServer('Frankfurt', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="p-2 rounded-lg bg-cyan-500/20 border border-cyan-400 text-cyan-200 text-left">
-            🇩🇪 Frankfurt (18ms)
+          <button id="btn-de" onclick="selectServer('Frankfurt Citadel', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="server-btn server-active p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer">
+            <span>🇩🇪</span> <span class="font-bold">Frankfurt (18ms)</span>
           </button>
-          <button onclick="selectServer('Paris', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 text-left">
-            🇫🇷 Paris (16ms)
+          <button id="btn-fr" onclick="selectServer('Paris Fortress', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="server-btn server-inactive p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer">
+            <span>🇫🇷</span> <span class="font-bold">Paris (16ms)</span>
           </button>
-          <button onclick="selectServer('New York', '🇺🇸', 24, '15.235.21.254', [26.0, 36.5], 'us')" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 text-left">
-            🇺🇸 New York (24ms)
+          <button id="btn-us" onclick="selectServer('New York Apex', '🇺🇸', 24, '198.199.86.11', [26.0, 36.5], 'us')" class="server-btn server-inactive p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer">
+            <span>🇺🇸</span> <span class="font-bold">New York (24ms)</span>
+          </button>
+          <button id="btn-sg" onclick="selectServer('Singapore Turbo', '🇸🇬', 12, '128.199.202.122', [76.5, 57.5], 'sg')" class="server-btn server-inactive p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer">
+            <span>🇸🇬</span> <span class="font-bold">Singapore (12ms)</span>
+          </button>
+          <button id="btn-jp" onclick="selectServer('Tokyo Apex', '🇯🇵', 20, '114.94.148.37', [85.5, 37.5], 'jp')" class="server-btn server-inactive p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer">
+            <span>🇯🇵</span> <span class="font-bold">Tokyo (20ms)</span>
+          </button>
+          <button id="btn-auto" onclick="selectServer('Auto-Turbo Mesh', '⚡', 10, 'Global Fastest', [51.2, 31.8], 'auto')" class="server-btn server-inactive p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer">
+            <span>⚡</span> <span class="font-bold">Auto-Fastest</span>
           </button>
         </div>
       </div>
@@ -281,7 +308,7 @@
     }
 
     let isConnected = false;
-    let selectedRegion = 'auto';
+    let selectedRegion = 'de';
 
     async function toggleConnect() {
       playChime();
@@ -319,15 +346,52 @@
 
     function selectServer(city, flag, ping, ip, coords, regionKey) {
       playChime();
-      selectedRegion = regionKey || 'auto';
-      document.getElementById('nodeCity').innerText = `${city}, Sovereign Cluster`;
+      selectedRegion = regionKey || 'de';
+
+      // 1. Highlight the chosen button
+      const allBtns = ['btn-de', 'btn-fr', 'btn-us', 'btn-sg', 'btn-jp', 'btn-auto'];
+      allBtns.forEach(id => {
+        const b = document.getElementById(id);
+        if (b) {
+          b.className = 'server-btn server-inactive p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer';
+        }
+      });
+      const activeBtn = document.getElementById(`btn-${selectedRegion}`);
+      if (activeBtn) {
+        activeBtn.className = 'server-btn server-active p-2 rounded-lg border text-left flex items-center gap-1.5 cursor-pointer';
+      }
+
+      // 2. Highlight map node dot
+      const allDots = ['dot-de', 'dot-fr', 'dot-us', 'dot-sg', 'dot-jp'];
+      allDots.forEach(id => {
+        const d = document.getElementById(id);
+        if (d) {
+          d.setAttribute('r', '1.8');
+          d.setAttribute('stroke', 'none');
+        }
+      });
+      const activeDot = document.getElementById(`dot-${selectedRegion}`);
+      if (activeDot) {
+        activeDot.setAttribute('r', '2.4');
+        activeDot.setAttribute('stroke', '#ffffff');
+        activeDot.setAttribute('stroke-width', '0.8');
+      }
+
+      // 3. Update HUD readout
+      document.getElementById('nodeCity').innerText = city;
       document.getElementById('nodeFlag').innerText = flag;
       document.getElementById('nodePing').innerText = `${ping} ms`;
       document.getElementById('nodeIp').innerText = `IP: ${ip}`;
 
+      // 4. Update map orbital arc
       const midX = (28 + coords[0]) / 2;
       const midY = Math.min(38, coords[1]) - Math.abs(28 - coords[0]) * 0.25;
       document.getElementById('mapArc').setAttribute('d', `M 28 38 Q ${midX} ${Math.max(8, midY)} ${coords[0]} ${coords[1]}`);
+
+      // 5. Notify Python API of the change
+      if (window.pywebview && window.pywebview.api) {
+        try { window.pywebview.api.select_region(selectedRegion); } catch(e) {}
+      }
     }
 
     // Telemetry Poller from Python Engine

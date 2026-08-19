@@ -23,28 +23,29 @@ _SSL_CTX.verify_mode = ssl.CERT_NONE
 # Verified high-speed remote exit relays across key regions
 REGIONAL_RELAYS = {
     "auto": [
-        {"host": "45.66.249.187", "port": 8181, "name": "Auto-Turbo (EU)", "country": "DE", "flag": "⚡"},
-        {"host": "37.59.125.131", "port": 8888, "name": "Auto-Turbo (FR)", "country": "FR", "flag": "⚡"},
-        {"host": "114.94.148.37", "port": 18080, "name": "Auto-Turbo (Asia)", "country": "SG", "flag": "⚡"},
-        {"host": "15.235.21.254", "port": 8080, "name": "Auto-Turbo (US)", "country": "US", "flag": "⚡"},
+        {"host": "128.199.202.122", "port": 8080, "name": "Auto-Turbo (Fastest SG)", "country": "SG", "flag": "⚡"},
+        {"host": "114.94.148.37",   "port": 18080, "name": "Auto-Turbo (Asia JP)",     "country": "JP", "flag": "⚡"},
+        {"host": "198.199.86.11",   "port": 8080, "name": "Auto-Turbo (US)",          "country": "US", "flag": "⚡"},
+        {"host": "45.66.249.187",   "port": 8181, "name": "Auto-Turbo (EU DE)",       "country": "DE", "flag": "⚡"},
+        {"host": "37.59.125.131",   "port": 8888, "name": "Auto-Turbo (FR)",          "country": "FR", "flag": "⚡"},
     ],
     "de": [
-        {"host": "45.66.249.187", "port": 8181, "name": "Frankfurt Relay", "country": "DE", "flag": "🇩🇪"},
+        {"host": "45.66.249.187", "port": 8181, "name": "Frankfurt Citadel", "country": "DE", "flag": "🇩🇪"},
         {"host": "45.66.249.187", "port": 8080, "name": "Frankfurt Relay 2", "country": "DE", "flag": "🇩🇪"},
     ],
-    "us": [
-        {"host": "15.235.21.254", "port": 8080, "name": "US East Relay", "country": "US", "flag": "🇺🇸"},
-        {"host": "167.172.164.215", "port": 8080, "name": "US West Relay", "country": "US", "flag": "🇺🇸"},
-    ],
     "fr": [
-        {"host": "37.59.125.131", "port": 8888, "name": "Paris Relay", "country": "FR", "flag": "🇫🇷"},
+        {"host": "37.59.125.131", "port": 8888, "name": "Paris Fortress", "country": "FR", "flag": "🇫🇷"},
+    ],
+    "us": [
+        {"host": "198.199.86.11", "port": 8080, "name": "New York Apex", "country": "US", "flag": "🇺🇸"},
+        {"host": "15.235.21.254", "port": 8080, "name": "Virginia Vault", "country": "US", "flag": "🇺🇸"},
     ],
     "sg": [
-        {"host": "114.94.148.37", "port": 18080, "name": "Singapore Relay", "country": "SG", "flag": "🇸🇬"},
-        {"host": "49.51.253.118", "port": 8888, "name": "Asia Relay 2", "country": "SG", "flag": "🇸🇬"},
+        {"host": "128.199.202.122", "port": 8080, "name": "Singapore Turbo", "country": "SG", "flag": "🇸🇬"},
+        {"host": "114.94.148.37",   "port": 18080, "name": "Singapore Relay 2", "country": "SG", "flag": "🇸🇬"},
     ],
     "jp": [
-        {"host": "114.94.148.37", "port": 18080, "name": "Tokyo Anycast", "country": "JP", "flag": "🇯🇵"},
+        {"host": "114.94.148.37", "port": 18080, "name": "Tokyo Apex", "country": "JP", "flag": "🇯🇵"},
     ]
 }
 
@@ -63,7 +64,7 @@ class FleetManager:
             opener = urllib.request.build_opener(proxy_handler, urllib.request.HTTPSHandler(context=_SSL_CTX))
             
             req = urllib.request.Request("https://icanhazip.com", headers={"User-Agent": "curl/8.0"})
-            with opener.open(req, timeout=3.5) as resp:
+            with opener.open(req, timeout=3.0) as resp:
                 remote_ip = resp.read().decode("utf-8", "ignore").strip()
                 rtt_ms = int((time.perf_counter() - t0) * 1000.0)
 
@@ -108,7 +109,7 @@ class FleetManager:
             self._log(f"Fleet Manager: Selected -> {best['name']} (IP: {best['remote_ip']})")
             return best
 
-        # Fallback to first candidate in list if live test timed out
+        # Fallback to first candidate in list
         first = candidates[0]
         return {
             "host": first["host"],
