@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "app_name": "Jents VPN",
+  "auto_connect_on_launch": false,
+  "kill_switch_enabled": true,
+  "dns_guard_enabled": true,
+  "primary_dns": "1.1.1.1",
+  "secondary_dns": "1.0.0.1",
+  "local_port": 1088,
+  "probe_timeout_ms": 1200,
+  "gateways": [
+    {
+      "id": "jents-us-east",
+      "name": "US East (New York)",
+      "country": "US",
+      "flag": "🇺🇸",
+      "host": "us-east.jentsvpn.net",
+      "port": 443,
+      "test_host": "1.1.1.1",
+      "test_port": 53
+    },
+    {
+      "id": "jents-eu-central",
+      "name": "EU Central (Frankfurt)",
+      "country": "DE",
+      "flag": "🇩🇪",
+      "host": "eu-central.jentsvpn.net",
+      "port": 443,
+      "test_host": "8.8.8.8",
+      "test_port": 53
+    },
+    {
+      "id": "jents-ap-south",
+      "name": "Asia Pacific (Singapore)",
+      "country": "SG",
+      "flag": "🇸🇬",
+      "host": "ap-south.jentsvpn.net",
+      "port": 443,
+      "test_host": "9.9.9.9",
+      "test_port": 53
+    },
+    {
+      "id": "jents-uk-london",
+      "name": "UK (London)",
+      "country": "GB",
+      "flag": "🇬🇧",
+      "host": "uk-lon.jentsvpn.net",
+      "port": 443,
+      "test_host": "208.67.222.222",
+      "test_port": 53
+    },
+    {
+      "id": "jents-jp-tokyo",
+      "name": "Japan (Tokyo)",
+      "country": "JP",
+      "flag": "🇯🇵",
+      "host": "jp-tyo.jentsvpn.net",
+      "port": 443,
+      "test_host": "8.8.4.4",
+      "test_port": 53
+    }
+  ]
+}
