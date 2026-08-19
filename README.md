@@ -9,6 +9,15 @@
 
 ---
 
+## 📥 Direct Downloads (`.exe`)
+
+You can run Jents VPN directly without installing Python:
+
+* 🚀 **[Download Jents_VPN.exe (Standalone Application)](Jents_VPN.exe)**
+* 🔍 **[Download IP_Detector.exe (Live IP & Geolocation Scanner)](IP_Detector.exe)**
+
+---
+
 ## 🌟 Key Features
 
 * **⚡ Zero-Touch Autonomous Operation**: The only manual interaction required is clicking the **`[ CONNECT ]`** button.
@@ -24,6 +33,8 @@
 
 ```text
 jents_vpn/
+├── Jents_VPN.exe            # Standalone compiled executable (Windows)
+├── IP_Detector.exe          # Standalone compiled IP detector (Windows)
 ├── jents.py                 # Main application entry point & UAC privilege manager
 ├── ip_detector.py           # Standalone IP & Geolocation security scanner
 ├── build.py                 # Standalone PyInstaller executable compiler
