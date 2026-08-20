@@ -53,7 +53,7 @@ class BridgeHandler(http.server.SimpleHTTPRequestHandler):
                 region = "auto"
 
             if self.engine_ref:
-                region_map = {"auto": 0, "de": 1, "fr": 2, "us": 3, "sg": 4, "jp": 5}
+                region_map = {"auto": 0, "de": 1, "us": 2, "nl": 3, "fr": 4, "sg": 5, "jp": 6}
                 idx = region_map.get(region, 0)
                 self.engine_ref.select_preset(idx)
                 self.engine_ref.trigger_connect()

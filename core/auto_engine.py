@@ -31,12 +31,13 @@ class ConnectionState:
     ERROR         = "ERROR"
 
 GATEWAY_PRESETS = [
-    {"id": "auto", "name": "Auto-Turbo Fastest", "flag": "⚡"},
-    {"id": "de",   "name": "Germany (Frankfurt)", "flag": "🇩🇪"},
-    {"id": "fr",   "name": "France (Paris)",      "flag": "🇫🇷"},
-    {"id": "us",   "name": "US East (New York)",  "flag": "🇺🇸"},
-    {"id": "sg",   "name": "Singapore (Fast)",    "flag": "🇸🇬"},
-    {"id": "jp",   "name": "Japan (Tokyo)",       "flag": "🇯🇵"},
+    {"id": "auto", "name": "Auto-Turbo Fastest",        "flag": "⚡"},
+    {"id": "de",   "name": "Germany (Frankfurt)",       "flag": "🇩🇪"},
+    {"id": "us",   "name": "United States (Richmond)",  "flag": "🇺🇸"},
+    {"id": "nl",   "name": "Netherlands (Amsterdam)",   "flag": "🇳🇱"},
+    {"id": "fr",   "name": "France (Paris)",            "flag": "🇫🇷"},
+    {"id": "sg",   "name": "Singapore / Asia Turbo",    "flag": "🇸🇬"},
+    {"id": "jp",   "name": "Japan / East Asia",         "flag": "🇯🇵"},
 ]
 
 _TEST_SSL = ssl.create_default_context()

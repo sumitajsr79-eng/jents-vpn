@@ -64,13 +64,13 @@ class VpnJsApi:
         self.engine = engine
 
     def select_region(self, region="auto"):
-        region_map = {"auto": 0, "de": 1, "fr": 2, "us": 3, "sg": 4, "jp": 5}
+        region_map = {"auto": 0, "de": 1, "us": 2, "nl": 3, "fr": 4, "sg": 5, "jp": 6}
         idx = region_map.get(region, 0)
         self.engine.select_preset(idx)
         return {"status": "selected", "region": region}
 
     def connect(self, region="auto"):
-        region_map = {"auto": 0, "de": 1, "fr": 2, "us": 3, "sg": 4, "jp": 5}
+        region_map = {"auto": 0, "de": 1, "us": 2, "nl": 3, "fr": 4, "sg": 5, "jp": 6}
         idx = region_map.get(region, 0)
         self.engine.select_preset(idx)
         self.engine.trigger_connect()
