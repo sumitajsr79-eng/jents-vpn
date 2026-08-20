@@ -27,6 +27,7 @@ C_BLUE        = "#3b82f6"
 C_TEXT_BRIGHT = "#ffffff"
 C_TEXT_MUTED  = "#64748b"
 C_TEXT_CYAN   = "#67e8f9"
+C_TEXT_GREEN  = "#6ee7b7"
 
 # Preset Themes
 PRESET_THEMES = [
