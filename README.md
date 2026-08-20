@@ -1,6 +1,7 @@
-# ⚡ Jents Quantum Privacy & Network Studio Suite (v1.0.0)
+# ⚡ Jents Quantum Privacy & Developer Studio Suite (v1.0.0)
 
 [![Download Jents_VPN.exe](https://img.shields.io/badge/⚡_DOWNLOAD_JENTS_VPN.EXE-CLICK_HERE_TO_DOWNLOAD-00f0ff?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Jents_VPN.exe)
+[![Download Dev_Dashboard.exe](https://img.shields.io/badge/⚡_DOWNLOAD_DEV_DASHBOARD.EXE-CLICK_HERE_TO_DOWNLOAD-00ff9d?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Dev_Dashboard.exe)
 [![Download Activity_Logger.exe](https://img.shields.io/badge/📊_DOWNLOAD_ACTIVITY_LOGGER.EXE-CLICK_HERE_TO_DOWNLOAD-6366f1?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Activity_Logger.exe)
 [![Download Icon_Designer.exe](https://img.shields.io/badge/🎨_DOWNLOAD_ICON_DESIGNER.EXE-CLICK_HERE_TO_DOWNLOAD-ff0055?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Icon_Designer.exe)
 [![Download DNS_Changer.exe](https://img.shields.io/badge/⚡_DOWNLOAD_DNS_CHANGER.EXE-CLICK_HERE_TO_DOWNLOAD-b026ff?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/DNS_Changer.exe)
@@ -21,10 +22,19 @@
 | Application | Description | Direct Download Link |
 | :--- | :--- | :--- |
 | ⚡ **Jents_VPN.exe** | Full Autonomous Quantum VPN Client (Aether God HUD) | [⬇️ **Download Jents_VPN.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Jents_VPN.exe) |
+| ⚡ **Dev_Dashboard.exe** | Developer & System Metrics Dashboard (Real-time CPU/RAM/Disks, Ports & Git) | [⬇️ **Download Dev_Dashboard.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Dev_Dashboard.exe) |
 | 📊 **Activity_Logger.exe** | Live Network Activity, Process Telemetry & Security Sentinel | [⬇️ **Download Activity_Logger.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Activity_Logger.exe) |
-| 🎨 **Icon_Designer.exe** | Interactive Quantum Icon Studio & Multi-Resolution `.ico`/`.png` Designer | [⬇️ **Download Icon_Designer.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Icon_Designer.exe) |
+| 🎨 **Icon_Designer.exe** | Interactive Quantum Icon Studio & AI Prompt-to-Icon Synthesizer | [⬇️ **Download Icon_Designer.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/Icon_Designer.exe) |
 | ⚡ **DNS_Changer.exe** | Intelligent DNS Optimizer, Speed Benchmark & 1-Click Changer | [⬇️ **Download DNS_Changer.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/DNS_Changer.exe) |
 | 🔍 **IP_Detector.exe** | Standalone Live Public IP & Geolocation Security Scanner | [⬇️ **Download IP_Detector.exe**](https://github.com/sumitajsr79-eng/jents-vpn/releases/download/v1.0.0/IP_Detector.exe) |
+
+---
+
+## ⚡ Developer & System Metrics Dashboard Features
+* **⚡ Real-Time System Telemetry**: Live CPU utilization (total & per-core), RAM consumption (used/total/free), multi-partition disk gauges (C:, D:, E:), and live Network I/O upload/download speeds.
+* **📡 Active Server Ports Scanner**: Real-time scanner for listening TCP/UDP server sockets mapped to process names and PIDs with 1-click **Open in Browser** or **Kill Process**.
+* **📂 Git Multi-Repository Sentinel**: Automatic multi-directory scanning of all local Git repositories, tracking branches, modified files, unpushed commits (ahead/behind), and 1-click **Pull / Fetch / Terminal / Explorer**.
+* **🌐 Dual Interface**: High-Performance Dark Cyberpunk Native Desktop Window + Built-in Web Server on `http://127.0.0.1:5050`.
 
 ---
 
@@ -37,11 +47,10 @@
 ---
 
 ## 🎨 Quantum Icon Studio & Designer Features
-* **✨ Vector & Raster Canvas**: Real-time 256×256 master rendering with neon bloom glow, customizable shapes (Squircle, Shield, Hexagon, Circle, Diamond), gradients, and border sliders.
-* **🎭 Preset Glyphs**: Lightning bolt, Quantum Shield, Neon Padlock, Cyber Globe, Rocket, Sentinel Eye, Atom Orbit, Gamepad, or custom initials.
+* **🤖 Integrated AI Icon Architect**: Natural language prompt-to-icon synthesis engine with vector rendering.
+* **⚡ 100,000+ Procedural Template Matrix**: Mathematically indexed procedural library with 1-click random rolling.
 * **📱 Multi-Resolution Previews**: Live simultaneous previews in 16×16 (Taskbar), 32×32 (Desktop), 64×64 (Explorer), 128×128, and 256×256.
 * **💾 Multi-Layer `.ico` Export**: Exports true Windows `.ico` files with all 6 resolution layers embedded, or transparent high-res `.png`.
-* **⚡ 1-Click App Icon Overwrite**: Directly updates `icons/jents_icon.ico` for immediate use in builds.
 
 ---
 
@@ -58,35 +67,6 @@
 | **Cloudflare Families** | `1.1.1.3` • `1.0.0.3` | 👨‍👩‍👧 Family Safety | 🏡 **Family Internet Safety: Blocks Malware + Adult Content** |
 | **Control D Uncensored** | `76.76.2.0` • `76.76.10.0` | 🔓 Uncensored | 🔓 **Bypassing ISP Censorship & Pure Neutral Web Access** |
 | **Automatic (DHCP)** | *Router Assigned* | 🔄 ISP Default | 🔄 **1-Click Reset to Original Wi-Fi / Router Settings** |
-
----
-
-## 📦 Project Structure
-
-```text
-jents_vpn/
-├── Jents_VPN.exe            # Standalone Quantum VPN Client (Windows)
-├── Activity_Logger.exe      # Standalone Network Activity Logger (Windows)
-├── Icon_Designer.exe        # Standalone Quantum Icon Studio (Windows)
-├── DNS_Changer.exe          # Standalone DNS Optimizer (Windows)
-├── IP_Detector.exe          # Standalone IP Security Sentinel (Windows)
-├── activity_logger.py       # Activity Logger & Network Sentinel source
-├── icon_designer.py         # Icon Studio & Multi-Resolution Designer source
-├── dns_changer.py           # DNS optimizer, benchmark & adapter manager source
-├── ip_detector.py           # Real-time public IP & geolocation detector source
-├── jents.py                 # Main application entry point & UAC privilege manager
-├── build.py                 # PyInstaller production build pipeline
-├── core/
-│   ├── auto_engine.py       # Master engine orchestrator & state machine
-│   ├── fleet_manager.py     # Verified remote exit relay pool
-│   ├── tunnel_gateway.py    # Self-healing local HTTP/HTTPS tunnel gateway
-│   ├── doh_resolver.py      # Encrypted DNS-over-HTTPS (DoH) engine
-│   ├── proxy_router.py      # Windows WinINet & WinHTTP system proxy manager
-│   ├── stats_engine.py      # Live bandwidth telemetry & throughput tracking
-│   └── crypto_session.py    # Ephemeral cryptographic session manager
-└── ui_web/
-    └── index.html           # Aether God-Tier Cyber HUD (HTML/CSS/JS)
-```
 
 ---
 
