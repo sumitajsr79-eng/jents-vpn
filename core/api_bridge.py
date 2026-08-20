@@ -27,16 +27,23 @@ class BridgeHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=self.ui_dir, **kwargs)
 
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
     def do_GET(self):
-        if self.path == "/api/status":
+        if self.path.startswith("/api/status"):
             self.send_json_response(self._get_engine_status())
-        elif self.path == "/api/detect_ip":
+        elif self.path.startswith("/api/detect_ip"):
             self.send_json_response(self._get_ip_info())
         else:
             super().do_GET()
 
     def do_POST(self):
-        if self.path == "/api/connect":
+        if self.path.startswith("/api/connect"):
             content_length = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(content_length).decode("utf-8") if content_length > 0 else "{}"
             try:
@@ -46,10 +53,13 @@ class BridgeHandler(http.server.SimpleHTTPRequestHandler):
                 region = "auto"
 
             if self.engine_ref:
+                region_map = {"auto": 0, "de": 1, "fr": 2, "us": 3, "sg": 4, "jp": 5}
+                idx = region_map.get(region, 0)
+                self.engine_ref.select_preset(idx)
                 self.engine_ref.trigger_connect()
             self.send_json_response({"status": "connecting", "region": region})
 
-        elif self.path == "/api/disconnect":
+        elif self.path.startswith("/api/disconnect"):
             if self.engine_ref:
                 self.engine_ref.trigger_disconnect()
             self.send_json_response({"status": "disconnecting"})
@@ -62,6 +72,7 @@ class BridgeHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
         self.wfile.write(body)
 

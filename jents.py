@@ -10,9 +10,11 @@ import os
 import io
 import ctypes
 import logging
+import time
 
 from config.config_manager import ConfigManager
 from core.auto_engine import JentsEngine
+from core.api_bridge import ApiBridgeServer
 
 # Logging
 LOG_FILE = os.path.join(
@@ -112,20 +114,27 @@ def main():
         sys.path.insert(0, base_dir)
 
     cfg = ConfigManager()
-    engine = JentsEngine(config_manager=cfg)
+    engine = JentsEngine(config_manager=cfg, log_callback=lambda msg: print(f"[JENTS-LOG] {msg}"))
     api = VpnJsApi(engine)
 
-    html_path = os.path.join(base_dir, "ui_web", "index.html")
-    if not os.path.exists(html_path):
-        # Fallback to local search
-        html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui_web", "index.html")
+    ui_path = os.path.join(base_dir, "ui_web")
+    if not os.path.exists(ui_path):
+        ui_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui_web")
+
+    # Start local HTTP API bridge server
+    bridge = ApiBridgeServer(engine=engine, port=4099, ui_dir=ui_path)
+    bridge.start()
+    print("API Bridge Server started on http://127.0.0.1:4099/")
+
+    html_path = os.path.join(ui_path, "index.html")
+    app_url = "http://127.0.0.1:4099/" if os.path.exists(html_path) else html_path
 
     try:
         import webview
         # Create a dedicated, native, dark-themed cyberpunk desktop window
         window = webview.create_window(
             title="AETHER // GOD-TIER QUANTUM VPN",
-            url=html_path,
+            url=app_url,
             js_api=api,
             width=1180,
             height=780,
@@ -133,7 +142,7 @@ def main():
             min_size=(900, 600),
             background_color="#020617"
         )
-        print("Launching native Aether God Desktop Window...")
+        print(f"Launching native Aether God Desktop Window on {app_url}...")
         webview.start(debug=False)
     except Exception as e:
         print(f"Native WebView error: {e}. Falling back to native canvas UI...")
@@ -144,6 +153,7 @@ def main():
         except Exception as e2:
             print(f"Fallback UI error: {e2}")
     finally:
+        bridge.stop()
         engine._cleanup()
 
 if __name__ == "__main__":

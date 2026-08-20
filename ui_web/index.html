@@ -107,7 +107,7 @@
           <span id="statusText">SYSTEM EXPOSED</span>
         </div>
 
-        <button onclick="toggleAudioMute()" id="audioBtn" class="p-2 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 shadow-md">
+        <button onclick="toggleAudioMute()" id="audioBtn" class="p-2 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 shadow-md cursor-pointer">
           🔊
         </button>
       </div>
@@ -201,7 +201,7 @@
             <path id="mapArc" d="M 28 38 Q 39 12 51.2 31.8" fill="none" stroke="url(#beam)" stroke-width="0.8" stroke-dasharray="2 1" />
 
             <!-- Server Node Points -->
-            <circle id="dot-de" cx="51.2" cy="31.8" r="2.2" fill="#00f0ff" stroke="#fff" stroke-width="0.7" onclick="selectServer('Frankfurt Citadel', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="cursor-pointer" />
+            <circle id="dot-de" cx="51.2" cy="31.8" r="2.4" fill="#00f0ff" stroke="#ffffff" stroke-width="0.8" onclick="selectServer('Frankfurt Citadel', '🇩🇪', 18, '45.66.249.187', [51.2, 31.8], 'de')" class="cursor-pointer" />
             <circle id="dot-fr" cx="48.8" cy="32.5" r="1.8" fill="#34d399" onclick="selectServer('Paris Fortress', '🇫🇷', 16, '82.66.253.58', [48.8, 32.5], 'fr')" class="cursor-pointer" />
             <circle id="dot-us" cx="26.0" cy="36.5" r="1.8" fill="#38bdf8" onclick="selectServer('New York Apex', '🇺🇸', 24, '198.199.86.11', [26.0, 36.5], 'us')" class="cursor-pointer" />
             <circle id="dot-sg" cx="76.5" cy="57.5" r="1.8" fill="#34d399" onclick="selectServer('Singapore Turbo', '🇸🇬', 12, '128.199.202.122', [76.5, 57.5], 'sg')" class="cursor-pointer" />
@@ -276,6 +276,8 @@
   </div>
 
   <script>
+    const API_BASE = (window.location.protocol === 'http:' || window.location.protocol === 'https:') ? '' : 'http://127.0.0.1:4099';
+
     // Audio Synthesizer
     let audioCtx = null;
     let isMuted = false;
@@ -322,11 +324,16 @@
         rSub.innerText = "SECURING TUNNEL";
         rBtn.className = "relative w-40 h-40 rounded-full bg-gradient-to-b from-amber-950 via-amber-900/40 to-slate-950 border-2 border-amber-400 text-amber-300 shadow-[0_0_80px_rgba(245,158,11,0.6)] flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105 active:scale-95 z-10";
 
-        if (window.pywebview && window.pywebview.api) {
-          try { await window.pywebview.api.connect(selectedRegion); } catch(e) {}
-        } else {
+        let handled = false;
+        if (window.pywebview && window.pywebview.api && window.pywebview.api.connect) {
           try {
-            await fetch('/api/connect', {
+            await window.pywebview.api.connect(selectedRegion);
+            handled = true;
+          } catch(e) {}
+        }
+        if (!handled) {
+          try {
+            await fetch(`${API_BASE}/api/connect`, {
               method: 'POST',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({ region: selectedRegion })
@@ -336,10 +343,17 @@
       } else {
         rLabel.innerText = "RELEASING";
         rSub.innerText = "DISCONNECTING";
-        if (window.pywebview && window.pywebview.api) {
-          try { await window.pywebview.api.disconnect(); } catch(e) {}
-        } else {
-          try { await fetch('/api/disconnect', { method: 'POST' }); } catch(e) {}
+        let handled = false;
+        if (window.pywebview && window.pywebview.api && window.pywebview.api.disconnect) {
+          try {
+            await window.pywebview.api.disconnect();
+            handled = true;
+          } catch(e) {}
+        }
+        if (!handled) {
+          try {
+            await fetch(`${API_BASE}/api/disconnect`, { method: 'POST' });
+          } catch(e) {}
         }
       }
     }
@@ -389,7 +403,7 @@
       document.getElementById('mapArc').setAttribute('d', `M 28 38 Q ${midX} ${Math.max(8, midY)} ${coords[0]} ${coords[1]}`);
 
       // 5. Notify Python API of the change
-      if (window.pywebview && window.pywebview.api) {
+      if (window.pywebview && window.pywebview.api && window.pywebview.api.select_region) {
         try { window.pywebview.api.select_region(selectedRegion); } catch(e) {}
       }
     }
@@ -398,11 +412,14 @@
     setInterval(async () => {
       try {
         let data = null;
-        if (window.pywebview && window.pywebview.api) {
-          data = await window.pywebview.api.get_status();
-        } else {
-          const resp = await fetch('/api/status');
-          data = await resp.json();
+        if (window.pywebview && window.pywebview.api && window.pywebview.api.get_status) {
+          try { data = await window.pywebview.api.get_status(); } catch(e) {}
+        }
+        if (!data) {
+          try {
+            const resp = await fetch(`${API_BASE}/api/status`);
+            data = await resp.json();
+          } catch(e) {}
         }
 
         if (!data) return;
